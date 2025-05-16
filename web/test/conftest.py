@@ -1,7 +1,7 @@
 import pytest
 import redis
 
-from src.page_tracker.app import app
+from page_tracker.app import app
 
 def pytest_addoption(parser):
     parser.addoption("--flask-url")
