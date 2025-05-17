@@ -4,13 +4,13 @@ from redis import ConnectionError
 
 import pytest
 
-from src.page_tracker.app import app
+from page_tracker.app import app
 
 @pytest.fixture
 def http_client():
     return app.test_client()
 
-@unittest.mock.patch("src.page_tracker.app.redis")
+@unittest.mock.patch("page_tracker.app.redis")
 def test_should_call_redis_incr(mock_redis, http_client):
     # Given
     mock_redis.return_value.incr.return_value = 5
@@ -33,4 +33,4 @@ def test_should_handle_redis_connection_error(mock_redis, http_client):
 
     # Then
     assert response.status_code == 500
-    assert response.text == "Sorry, something went wrong \N{pensive face}"
+    assert response.text == "Sorry, something went wrong \N{thinking face}"
